@@ -1,7 +1,18 @@
+package core;
+
 import java.util.List;
 import java.util.UUID;
 
 public class StudentService {
+
+    private StudentRepository studentRepository;
+    private UniversityRepository universityRepository;
+
+    public StudentService(StudentRepository studentRepository, UniversityRepository universityRepository) {
+        this.studentRepository = studentRepository;
+        this.universityRepository = universityRepository;
+    }
+
     public boolean add(String emailAddress, UUID universityId)
     {
         System.out.printf("Log: Start add student with email '%s'", emailAddress);
@@ -11,14 +22,10 @@ public class StudentService {
             return false;
         }
 
-        StudentRepository studentRepository = new StudentRepository();
-
         if (studentRepository.exists(emailAddress))
         {
             return false;
         }
-
-        UniversityRepository universityRepository = new UniversityRepository();
 
         University university = universityRepository.getById(universityId);
 
