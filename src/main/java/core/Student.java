@@ -16,8 +16,6 @@ public abstract class Student {
         this.universityId = universityId;
     }
 
-    public abstract void addBonusAllowance();
-
     public String getEmailAddress() {
         return emailAddress;
     }

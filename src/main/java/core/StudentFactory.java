@@ -8,7 +8,7 @@ public class StudentFactory {
         switch (ebookPackage) {
             case STANDARD: return new StandardStudent(emailAddress, universityId);
             case PREMIUM: return new PremiumStudent(emailAddress, universityId);
-            default: throw new IllegalStateException("No matching student type for ebook package");
+            default:return new UnlimitedStudent(emailAddress, universityId);
         }
     }
 }

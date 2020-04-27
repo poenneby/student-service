@@ -39,7 +39,7 @@ public class StudentService {
     }
 
     public void addBonusAllowances() {
-        List<Student> students = studentRepository.getStudentsForBonusAllowance();
+        List<LimitedStudent> students = studentRepository.getStudentsForBonusAllowance();
         students.forEach(student -> student.addBonusAllowance());
     }
 

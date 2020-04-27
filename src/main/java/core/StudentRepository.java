@@ -7,5 +7,5 @@ public interface StudentRepository {
 
     boolean exists(String emailAddress);
 
-    List<Student> getStudentsForBonusAllowance();
+    List<LimitedStudent> getStudentsForBonusAllowance();
 }
