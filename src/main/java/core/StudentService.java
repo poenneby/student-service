@@ -9,19 +9,15 @@ public class StudentService {
     private UniversityRepository universityRepository;
     private Logger logger;
 
-    public StudentService(StudentRepository studentRepository, UniversityRepository universityRepository) {
+    public StudentService(StudentRepository studentRepository, UniversityRepository universityRepository, Logger logger) {
         this.studentRepository = studentRepository;
         this.universityRepository = universityRepository;
+        this.logger = logger;
     }
 
     public boolean add(String emailAddress, UUID universityId)
     {
         logger.logFormat("Log: Start add student with email '%s'", emailAddress);
-
-        if (emailAddress.isEmpty())
-        {
-            return false;
-        }
 
         if (studentRepository.exists(emailAddress))
         {
@@ -30,16 +26,7 @@ public class StudentService {
 
         University university = universityRepository.getById(universityId);
 
-        Student student = new Student(emailAddress, universityId);
-
-        if (university.getEbookPackage() == EbookPackage.STANDARD)
-        {
-            student.setMonthlyEbookAllowance(10);
-        }
-        else if (university.getEbookPackage() == EbookPackage.PREMIUM)
-        {
-            student.setMonthlyEbookAllowance(10 * 2);
-        }
+        Student student = new Student(emailAddress, universityId, university.getEbookPackage());
 
         studentRepository.add(student);
 
