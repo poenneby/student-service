@@ -2,28 +2,21 @@ package core;
 
 import java.util.UUID;
 
-public class Student {
+public abstract class Student {
 
-    private int STANDARD_ALLOWANCE = 10;
+    protected int STANDARD_ALLOWANCE = 10;
 
     private String emailAddress;
     private UUID universityId;
-    private int monthlyEbookAllowance;
+    protected int monthlyEbookAllowance;
     private int currentlyBorrowedEbooks;
 
-    public Student(String emailAddress, UUID universityId, EbookPackage ebookPackage) {
+    public Student(String emailAddress, UUID universityId) {
         this.emailAddress = emailAddress;
         this.universityId = universityId;
-
-        if (ebookPackage  == EbookPackage.STANDARD)
-        {
-            this.monthlyEbookAllowance = STANDARD_ALLOWANCE;
-        }
-        else if (ebookPackage == EbookPackage.PREMIUM)
-        {
-            this.monthlyEbookAllowance = STANDARD_ALLOWANCE * 2;
-        }
     }
+
+    public abstract void addBonusAllowance();
 
     public String getEmailAddress() {
         return emailAddress;
