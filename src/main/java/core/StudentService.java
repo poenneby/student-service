@@ -7,6 +7,7 @@ public class StudentService {
 
     private StudentRepository studentRepository;
     private UniversityRepository universityRepository;
+    private Logger logger;
 
     public StudentService(StudentRepository studentRepository, UniversityRepository universityRepository) {
         this.studentRepository = studentRepository;
@@ -15,7 +16,7 @@ public class StudentService {
 
     public boolean add(String emailAddress, UUID universityId)
     {
-        System.out.printf("Log: Start add student with email '%s'", emailAddress);
+        logger.logFormat("Log: Start add student with email '%s'", emailAddress);
 
         if (emailAddress.isEmpty())
         {
@@ -42,7 +43,7 @@ public class StudentService {
 
         studentRepository.add(student);
 
-        System.out.printf("Log: End add student with email '%s'", emailAddress);
+        logger.logFormat("Log: End add student with email '%s'", emailAddress);
 
         return true;
     }
